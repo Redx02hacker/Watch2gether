@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090a12"><title>WatchTogether — Watch in sync</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="ambient a1"></div><div class="ambient a2"></div>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-icon">▶</span><span>watch<span class="accent">together</span></span></a>
+  <div class="top-right"><span class="live-dot"></span><span class="muted small">REAL-TIME WATCH PARTY</span><button class="avatar" id="profileBtn" title="Edit display name">G</button></div>
+</header>
+<main>
+<section id="lobby" class="lobby">
+  <div class="hero-copy"><div class="eyebrow"><span class="spark">✦</span> YOUR PEOPLE. YOUR PICKS. ONE SCREEN.</div>
+    <h1>Good times are<br><span class="gradient-text">better together.</span></h1>
+    <p class="lead">Create a room, invite your favorite people, and press play. Everyone stays in sync.</p>
+  </div>
+  <div class="join-card">
+    <div class="card-head"><div><div class="eyebrow">GET THE CREW TOGETHER</div><h2>Start watching</h2></div><div class="mini-orb">✦</div></div>
+    <label for="displayName">YOUR DISPLAY NAME</label><input id="displayName" maxlength="24" placeholder="e.g. Alex" value="Guest">
+    <button id="createBtn" class="primary full">＋ Create a room <span>→</span></button>
+    <div class="or"><span></span> OR JOIN A ROOM <span></span></div>
+    <div class="join-row"><input id="roomInput" maxlength="6" placeholder="ENTER ROOM CODE"><button id="joinBtn" class="secondary">Join room</button></div>
+    <p id="lobbyError" class="error" aria-live="polite"></p>
+  </div>
+  <div class="feature-row"><div><b>01</b><span>One shared screen</span></div><div><b>02</b><span>Live room chat</span></div><div><b>03</b><span>Invite by link</span></div></div>
+</section>
+<section id="watch" class="watch hidden">
+  <div class="room-heading"><div><div class="eyebrow"><span class="live-dot"></span> YOU'RE IN THE ROOM</div><h1>Movie night<span class="accent">.</span></h1></div>
+    <div class="room-actions"><div class="room-code"><span class="muted tiny">ROOM CODE</span><strong id="roomCode">------</strong></div><button id="copyInvite" class="secondary">↗ <span>Copy invite</span></button><button id="leaveBtn" class="ghost">Leave</button></div>
+  </div>
+  <div class="watch-grid">
+    <div class="main-column">
+      <div class="player-shell">
+        <div id="playerPlaceholder" class="player-placeholder"><div class="play-mark">▶</div><h3>Your room, your movie.</h3><p>Add a YouTube link below to get everyone watching.</p></div>
+        <div id="player"></div>
+        <div class="player-overlay"><span class="sync-pill"><span class="live-dot"></span> SYNCED ROOM</span></div>
+      </div>
+      <form id="videoForm" class="video-form"><div class="youtube-mark">▶</div><input id="youtubeUrl" placeholder="Paste a YouTube video link…" autocomplete="off"><button class="primary" type="submit">Load video <span>→</span></button></form>
+      <p id="videoError" class="error"></p>
+      <div class="below-player"><div><h3>Now watching together</h3><p class="muted small">Playback is shared with everyone in this room.</p></div><div class="sync-status"><span class="live-dot"></span> IN SYNC</div></div>
+    </div>
+    <aside class="side-panel">
+      <div class="tabs"><button class="tab active" data-tab="chat">Room chat <span id="chatCount" class="count">0</span></button><button class="tab" data-tab="people">People <span id="peopleCount" class="count">1</span></button></div>
+      <div id="chatPane" class="pane chat-pane"><div id="messages" class="messages"><div class="system-message">Welcome! Say hello to the room 👋</div></div>
+        <form id="chatForm" class="chat-form"><input id="chatInput" maxlength="500" placeholder="Send a message…" autocomplete="off"><button aria-label="Send message">➤</button></form>
+      </div>
+      <div id="peoplePane" class="pane people-pane hidden"><div class="people-title">WATCHING NOW</div><div id="peopleList"></div></div>
+    </aside>
+  </div>
+  <p class="footnote">Be kind, keep it cozy. YouTube videos play through the official YouTube player.</p>
+</section>
+</main>
+<div id="toast" class="toast"></div>
+<script src="/config.js"></script>
+<script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script><script src="https://www.youtube.com/iframe_api"></script><script src="/app.js"></script>
+</body></html>
